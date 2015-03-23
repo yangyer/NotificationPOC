@@ -24,26 +24,22 @@ namespace SolarWind.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static List<string> _messages = new List<string>();
         public MainWindow()
         {
             InitializeComponent();
-
-            var hubCn = new HubConnection("http://solarwinddemo.azurewebsites.net/");
-            IHubProxy proxy = hubCn.CreateHubProxy("MyHub");
-            proxy.On<string>("hello", (message) => 
-            {
-                TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("MyNotifyIcon");
-
-                notifyIcon.ShowBalloonTip("Alert", message, BalloonIcon.Info);
-            });
-            hubCn.Start().Wait();
         }
 
-        private void btnClickMe_OnClick(object sender, RoutedEventArgs e)
+        private void Option_Click(object sender, RoutedEventArgs e)
         {
-            TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("MyNotifyIcon");
+            Options opt = new Options();
+            opt.Show();
+            this.Hide();
+        }
 
-            notifyIcon.ShowBalloonTip("Test", "testing 123", BalloonIcon.Info);
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            lblStatus.Text = string.IsNullOrWhiteSpace(App.ServerUrl) ? "Not connected" : "Connected";
         }
     }
 }

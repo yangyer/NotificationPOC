@@ -15,7 +15,7 @@ namespace SolarWind.Wpf
     public partial class App : Application
     {
         private TaskbarIcon notifyIcon;
-
+        public static string ServerUrl { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
