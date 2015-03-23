@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://schemas.solarwinds.com/2007/08/informationservice" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://schemas.solarwinds.com/2007/08/informationservice" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.solarwinds.com/2007/08/informationservice/Imports">
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd0" namespace="http://schemas.solarwinds.com/2007/08/informationservice" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Xml" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd3" namespace="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="InformationService_Invoke_InputMessage">
+    <wsdl:part name="parameters" element="tns:Invoke" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Invoke_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InvokeResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Invoke_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_QueryXml_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryXml" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_QueryXml_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Create_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Read_InputMessage">
+    <wsdl:part name="parameters" element="tns:Read" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Read_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Read_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Update_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_BulkUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:BulkUpdate" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_BulkUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BulkUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_BulkUpdate_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_Delete_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_BulkDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:BulkDelete" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_BulkDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BulkDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="InformationService_BulkDelete_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:portType name="InformationService">
+    <wsdl:operation name="Invoke">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" message="tns:InformationService_Invoke_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/InvokeResponse" message="tns:InformationService_Invoke_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/InvokeInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_Invoke_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" message="tns:InformationService_QueryXml_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXmlResponse" message="tns:InformationService_QueryXml_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" message="tns:InformationService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/CreateResponse" message="tns:InformationService_Create_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/CreateInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_Create_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" message="tns:InformationService_Read_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/ReadResponse" message="tns:InformationService_Read_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/ReadInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_Read_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" message="tns:InformationService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/UpdateResponse" message="tns:InformationService_Update_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/UpdateInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_Update_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" message="tns:InformationService_BulkUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdateResponse" message="tns:InformationService_BulkUpdate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdateInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_BulkUpdate_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" message="tns:InformationService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/DeleteResponse" message="tns:InformationService_Delete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/DeleteInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_Delete_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" message="tns:InformationService_BulkDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDeleteResponse" message="tns:InformationService_BulkDelete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDeleteInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:InformationService_BulkDelete_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function OnSuccess(response) {
+            alert(response);
+        }
+
+        function OnFailure(response) {
+            alert("Whoops! That didn't go so well did it?");
+        }
+
+        $(function () {
+            $('#btnClear').click(function () {
+                $('#message').empty();
+            })
+        });
+    </script>
+}
+
+<h2>Index</h2>
+
+<div class="row">
+    <div class="col-lg-4">
+        @using (Ajax.BeginForm("NotifyClients", "Home", new AjaxOptions { UpdateTargetId = "body-content", HttpMethod = "POST" }))
+        {
+            <div class="btn-group">
+                <button class="btn btn-default" type="submit">Server</button>
+                <button id="btnClickMe" class="btn btn-default" type="button">Client</button>
+                <button id="btnClear" class="btn btn-danger" type="button">Clear</button>
+            </div>
+        }
+    </div>
+    <div class="col-lg-8">
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">SignalR Messages</h3>
+                </div>
+                <div class="panel-body">
+                    <ul id="message"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

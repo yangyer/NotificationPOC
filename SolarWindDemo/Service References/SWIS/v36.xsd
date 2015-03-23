@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.solarwinds.com/2007/08/informationservice" elementFormDefault="qualified" targetNamespace="http://schemas.solarwinds.com/2007/08/informationservice" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Xml" />
+  <xs:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd3" namespace="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" />
+  <xs:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd6" namespace="http://schemas.microsoft.com/Message" />
+  <xs:element name="Invoke">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="entity" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="verb" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Xml" minOccurs="0" name="parameters" nillable="true" type="q1:ArrayOfXmlElement" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InvokeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InvokeResult" nillable="true">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any minOccurs="0" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="InformationServiceFaultContract">
+    <xs:sequence>
+      <xs:element name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorCode" type="xs:int">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="UserMessage" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ExceptionType" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="FullException" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InformationServiceFaultContract" nillable="true" type="tns:InformationServiceFaultContract" />
+  <xs:element name="QueryXml">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="query" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" minOccurs="0" name="parameters" nillable="true" type="q2:dictionary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryXmlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="QueryXmlResult" nillable="true">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any minOccurs="0" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="entityType" nillable="true" type="xs:string" />
+        <xs:element xmlns:q3="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" minOccurs="0" name="properties" nillable="true" type="q3:dictionary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Read">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="uri" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" minOccurs="0" name="ReadResult" nillable="true" type="q4:dictionary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="uri" nillable="true" type="xs:string" />
+        <xs:element xmlns:q5="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" minOccurs="0" name="propertiesToUpdate" nillable="true" type="q5:dictionary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BulkUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="uris" nillable="true" type="q6:ArrayOfstring" />
+        <xs:element xmlns:q7="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" minOccurs="0" name="propertiesToUpdate" nillable="true" type="q7:dictionary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BulkUpdateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Delete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="uri" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BulkDelete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="uris" nillable="true" type="q8:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BulkDeleteResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerbInvokeArguments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.microsoft.com/Message" name="Content" type="q9:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Entity" nillable="true" type="xs:string" />
+  <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/System.Xml" name="Parameters" nillable="true" type="q10:ArrayOfXmlElement" />
+  <xs:element name="Verb" nillable="true" type="xs:string" />
+  <xs:element name="VerbInvokeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.microsoft.com/Message" name="Content" type="q11:StreamBody" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Response" nillable="true">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" processContents="lax" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")"></script>
+    <link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    <div class="modal fade" id="modalBg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <i class="fa fa-recycle fa-spin"></i> Loading...
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.signalR-2.1.2.min.js")"></script>
+    <script src="@Url.Content("~/signalr/hubs")"></script>
+    <!--Add script to update the page and send messages.-->
+    <script type="text/javascript">
+        $(function () {
+            // Declare a proxy to reference the hub.
+            var chat = $.connection.myHub;
+            // Create a function that the hub can call to broadcast messages.
+            chat.client.hello = function (message) {
+                var encodedMsg = $('<div />').text(message).html();
+                // Add the message to the page.
+                $('#message').append('<li>' + encodedMsg + '</li>');
+            };
+
+            $('#modalBg').modal({ backdrop: "static" });
+
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                $('#modalBg').modal('hide');
+                $('#btnClickMe').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.send('From client');
+                });
+            });
+        });
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

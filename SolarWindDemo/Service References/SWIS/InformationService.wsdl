@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://schemas.solarwinds.com/2007/08/informationservice" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InformationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_InformationService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:SignedSupportingTokens>
+                      <wsp:Policy>
+                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                          <wsp:Policy>
+                            <sp:WssUsernameToken10 />
+                          </wsp:Policy>
+                        </sp:UsernameToken>
+                      </wsp:Policy>
+                    </sp:SignedSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy />
+                    </sp:Wss11>
+                    <sp:Trust10>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust10>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_InformationService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:SignedSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:WssUsernameToken10 />
+              </wsp:Policy>
+            </sp:UsernameToken>
+          </wsp:Policy>
+        </sp:SignedSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="BasicHttpBinding_InformationService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_InformationService1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_InformationService2_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:RequireClientCertificate />
+                </msf:SslTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IStreamInformationService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:RequireClientCertificate />
+                </msf:SslTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <msf:Streamed xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_InformationService1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <gzip:GZipEncoding xmlns:gzip="http://schemas.microsoft.com/ws/06/2004/mspolicy/netgzip1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_InformationService2_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <gzip:GZipEncoding xmlns:gzip="http://schemas.microsoft.com/ws/06/2004/mspolicy/netgzip1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <sp:EndorsingSupportingTokens xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+              <wsp:Policy>
+                <sp:BootstrapPolicy>
+                  <wsp:Policy>
+                    <sp:SignedParts>
+                      <sp:Body />
+                      <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                      <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                    </sp:SignedParts>
+                    <sp:EncryptedParts>
+                      <sp:Body />
+                    </sp:EncryptedParts>
+                    <sp:TransportBinding>
+                      <wsp:Policy>
+                        <sp:TransportToken>
+                          <wsp:Policy>
+                            <msf:SslTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+                          </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                          <wsp:Policy>
+                            <sp:Basic256 />
+                          </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                          <wsp:Policy>
+                            <sp:Strict />
+                          </wsp:Policy>
+                        </sp:Layout>
+                        <sp:IncludeTimestamp />
+                      </wsp:Policy>
+                    </sp:TransportBinding>
+                    <sp:SignedSupportingTokens>
+                      <wsp:Policy>
+                        <sp:UsernameToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                          <wsp:Policy>
+                            <sp:WssUsernameToken10 />
+                          </wsp:Policy>
+                        </sp:UsernameToken>
+                      </wsp:Policy>
+                    </sp:SignedSupportingTokens>
+                    <sp:Wss11>
+                      <wsp:Policy />
+                    </sp:Wss11>
+                    <sp:Trust10>
+                      <wsp:Policy>
+                        <sp:MustSupportIssuedTokens />
+                        <sp:RequireClientEntropy />
+                        <sp:RequireServerEntropy />
+                      </wsp:Policy>
+                    </sp:Trust10>
+                  </wsp:Policy>
+                </sp:BootstrapPolicy>
+              </wsp:Policy>
+            </sp:SecureConversationToken>
+          </wsp:Policy>
+        </sp:EndorsingSupportingTokens>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:import namespace="http://schemas.solarwinds.com/2007/08/informationservice" location="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?wsdl=wsdl0" />
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd5" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd0" namespace="http://schemas.solarwinds.com/2007/08/informationservice" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Xml" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd3" namespace="http://schemas.solarwinds.com/2007/08/informationservice/propertybag" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3?xsd=xsd6" namespace="http://schemas.microsoft.com/Message" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRestInformationService_Query_InputMessage">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Query_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_QueryWithParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithParameters" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_QueryWithParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Invoke_InputMessage">
+    <wsdl:part name="parameters" element="tns:Invoke" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Invoke_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InvokeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Read_InputMessage">
+    <wsdl:part name="parameters" element="tns:Read" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Read_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Update_InputMessage">
+    <wsdl:part name="parameters" element="tns:Update" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Update_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_BulkUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:BulkUpdate" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_BulkUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BulkUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_BulkDelete_InputMessage">
+    <wsdl:part name="parameters" element="tns:BulkDelete" />
+  </wsdl:message>
+  <wsdl:message name="IRestInformationService_BulkDelete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BulkDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_Invoke_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_Create_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_Read_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_Update_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_BulkUpdate_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_Delete_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_BulkDelete_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:message name="VerbInvokeArguments">
+    <wsdl:part name="parameters" element="i0:VerbInvokeArguments" />
+  </wsdl:message>
+  <wsdl:message name="VerbInvokeArguments_Headers">
+    <wsdl:part name="Entity" element="i0:Entity" />
+    <wsdl:part name="Parameters" element="i0:Parameters" />
+    <wsdl:part name="Verb" element="i0:Verb" />
+  </wsdl:message>
+  <wsdl:message name="VerbInvokeResponse">
+    <wsdl:part name="parameters" element="i0:VerbInvokeResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerbInvokeResponse_Headers">
+    <wsdl:part name="Response" element="i0:Response" />
+  </wsdl:message>
+  <wsdl:message name="IStreamInformationService_StreamedInvoke_InfoServiceFaultContractFault_FaultMessage">
+    <wsdl:part name="detail" element="i0:InformationServiceFaultContract" />
+  </wsdl:message>
+  <wsdl:portType name="IRestInformationService">
+    <wsdl:operation name="Query">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/Query" message="tns:IRestInformationService_Query_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/QueryResponse" message="tns:IRestInformationService_Query_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithParameters">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/QueryWithParameters" message="tns:IRestInformationService_QueryWithParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/QueryWithParametersResponse" message="tns:IRestInformationService_QueryWithParameters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Invoke">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/Invoke" message="tns:IRestInformationService_Invoke_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/InvokeResponse" message="tns:IRestInformationService_Invoke_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/Create" message="tns:IRestInformationService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/CreateResponse" message="tns:IRestInformationService_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/Read" message="tns:IRestInformationService_Read_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/ReadResponse" message="tns:IRestInformationService_Read_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/Update" message="tns:IRestInformationService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/UpdateResponse" message="tns:IRestInformationService_Update_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/BulkUpdate" message="tns:IRestInformationService_BulkUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/BulkUpdateResponse" message="tns:IRestInformationService_BulkUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/Delete" message="tns:IRestInformationService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/DeleteResponse" message="tns:IRestInformationService_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRestInformationService/BulkDelete" message="tns:IRestInformationService_BulkDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRestInformationService/BulkDeleteResponse" message="tns:IRestInformationService_BulkDelete_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IStreamInformationService">
+    <wsdl:operation name="Invoke">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" message="i0:InformationService_Invoke_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/InvokeResponse" message="i0:InformationService_Invoke_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/InvokeInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_Invoke_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" message="i0:InformationService_QueryXml_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXmlResponse" message="i0:InformationService_QueryXml_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" message="i0:InformationService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/CreateResponse" message="i0:InformationService_Create_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/CreateInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_Create_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" message="i0:InformationService_Read_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/ReadResponse" message="i0:InformationService_Read_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/ReadInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_Read_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" message="i0:InformationService_Update_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/UpdateResponse" message="i0:InformationService_Update_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/UpdateInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_Update_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" message="i0:InformationService_BulkUpdate_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdateResponse" message="i0:InformationService_BulkUpdate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdateInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_BulkUpdate_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" message="i0:InformationService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/DeleteResponse" message="i0:InformationService_Delete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/DeleteInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_Delete_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" message="i0:InformationService_BulkDelete_InputMessage" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDeleteResponse" message="i0:InformationService_BulkDelete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDeleteInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_BulkDelete_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StreamedInvoke">
+      <wsdl:input wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Streamed/Invoke" name="VerbInvokeArguments" message="tns:VerbInvokeArguments" />
+      <wsdl:output wsaw:Action="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Streamed/InvokeResponse" name="VerbInvokeResponse" message="tns:VerbInvokeResponse" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IStreamInformationService/StreamedInvokeInfoServiceFaultContractFault" name="InfoServiceFaultContractFault" message="tns:IStreamInformationService_StreamedInvoke_InfoServiceFaultContractFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_InformationService" type="i0:InformationService">
+    <wsp:PolicyReference URI="#NetTcpBinding_InformationService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_InformationService" type="i0:InformationService">
+    <wsp:PolicyReference URI="#CustomBinding_InformationService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/named-pipe" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_InformationService" type="i0:InformationService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_InformationService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Invoke">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_InformationService1" type="i0:InformationService">
+    <wsp:PolicyReference URI="#NetTcpBinding_InformationService1_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_InformationService2" type="i0:InformationService">
+    <wsp:PolicyReference URI="#NetTcpBinding_InformationService2_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IStreamInformationService" type="tns:IStreamInformationService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IStreamInformationService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StreamedInvoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Streamed/Invoke" style="document" />
+      <wsdl:input name="VerbInvokeArguments">
+        <soap12:header message="tns:VerbInvokeArguments_Headers" part="Entity" use="literal" />
+        <soap12:header message="tns:VerbInvokeArguments_Headers" part="Parameters" use="literal" />
+        <soap12:header message="tns:VerbInvokeArguments_Headers" part="Verb" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="VerbInvokeResponse">
+        <soap12:header message="tns:VerbInvokeResponse_Headers" part="Response" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_InformationService1" type="i0:InformationService">
+    <wsp:PolicyReference URI="#CustomBinding_InformationService1_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_InformationService2" type="i0:InformationService">
+    <wsp:PolicyReference URI="#CustomBinding_InformationService2_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Invoke">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Invoke" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryXml">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/QueryXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Read">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Read" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Update">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Update" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkUpdate">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="BulkDelete">
+      <soap12:operation soapAction="http://schemas.solarwinds.com/2007/08/informationservice/InformationService/BulkDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InfoServiceFaultContractFault">
+        <soap12:fault use="literal" name="InfoServiceFaultContractFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InformationService">
+    <wsdl:port name="NetTcpBinding_InformationService" binding="tns:NetTcpBinding_InformationService">
+      <soap12:address location="net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ssl" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ssl</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>BFS-YYANG22.ucmerced.edu</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_InformationService" binding="tns:CustomBinding_InformationService">
+      <soap12:address location="net.pipe://localhost/SolarWinds/InformationService/v3/Orion" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.pipe://localhost/SolarWinds/InformationService/v3/Orion</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_InformationService" binding="tns:BasicHttpBinding_InformationService">
+      <soap:address location="https://bfs-yyang22.ucmerced.edu:17778/SolarWinds/InformationService/v3/OrionBasic" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_InformationService1" binding="tns:NetTcpBinding_InformationService1">
+      <soap12:address location="net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ad" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ad</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Spn>host/BFS-YYANG22.ucmerced.edu</Spn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_InformationService2" binding="tns:NetTcpBinding_InformationService2">
+      <soap12:address location="net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/certificate" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/certificate</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>BFS-YYANG22.ucmerced.edu</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IStreamInformationService" binding="tns:NetTcpBinding_IStreamInformationService">
+      <soap12:address location="net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/Streamed/Certificate" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/Streamed/Certificate</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>BFS-YYANG22.ucmerced.edu</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_InformationService1" binding="tns:CustomBinding_InformationService1">
+      <soap12:address location="net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ad/compressed" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ad/compressed</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Spn>host/BFS-YYANG22.ucmerced.edu</Spn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_InformationService2" binding="tns:CustomBinding_InformationService2">
+      <soap12:address location="net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ssl/compressed" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:17777/SolarWinds/InformationService/v3/Orion/ssl/compressed</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>BFS-YYANG22.ucmerced.edu</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
