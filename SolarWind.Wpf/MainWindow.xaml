@@ -1,9 +1,10 @@
 ﻿<Window x:Class="SolarWind.Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525"
-        Closing="OnClose" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged">
+        Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <StackPanel>
+            <Button x:Name="btnClickMe" Width="100" Height="50" Content="Click Me" Background="#FFDDDDDD" Click="btnClickMe_OnClick"/>
+        </StackPanel>
     </Grid>
 </Window>

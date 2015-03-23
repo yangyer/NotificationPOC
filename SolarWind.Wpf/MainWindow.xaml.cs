@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Hardcodet.Wpf.TaskbarNotification;
+using Microsoft.AspNet.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,57 +24,26 @@ namespace SolarWind.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.Windows.Forms.NotifyIcon m_notifyIcon;
-
-
         public MainWindow()
         {
             InitializeComponent();
-            m_notifyIcon = new System.Windows.Forms.NotifyIcon();
-            m_notifyIcon.BalloonTipText = "The app has been minimised. Click the tray icon to show.";
-            m_notifyIcon.BalloonTipTitle = "The App";
-            m_notifyIcon.Text = "The App";
-            m_notifyIcon.Icon = new System.Drawing.Icon("TheAppIcon.ico");
-            m_notifyIcon.Click += new EventHandler(m_notifyIcon_Click);
-        }
 
-        void OnClose(object sender, CancelEventArgs args)
-        {
-            m_notifyIcon.Dispose();
-            m_notifyIcon = null;
-        }
-
-        private WindowState m_storedWindowState = WindowState.Normal;
-        void OnStateChanged(object sender, EventArgs args)
-        {
-            if (WindowState == WindowState.Minimized)
+            var hubCn = new HubConnection("http://solarwinddemo.azurewebsites.net/");
+            IHubProxy proxy = hubCn.CreateHubProxy("MyHub");
+            proxy.On<string>("hello", (message) => 
             {
-                Hide();
-                if (m_notifyIcon != null)
-                    m_notifyIcon.ShowBalloonTip(2000);
-            }
-            else
-                m_storedWindowState = WindowState;
-        }
-        void OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs args)
-        {
-            CheckTrayIcon();
+                TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("MyNotifyIcon");
+
+                notifyIcon.ShowBalloonTip("Alert", message, BalloonIcon.Info);
+            });
+            hubCn.Start().Wait();
         }
 
-        void m_notifyIcon_Click(object sender, EventArgs e)
+        private void btnClickMe_OnClick(object sender, RoutedEventArgs e)
         {
-            Show();
-            WindowState = m_storedWindowState;
-        }
-        void CheckTrayIcon()
-        {
-            ShowTrayIcon(!IsVisible);
-        }
+            TaskbarIcon notifyIcon = (TaskbarIcon)FindResource("MyNotifyIcon");
 
-        void ShowTrayIcon(bool show)
-        {
-            if (m_notifyIcon != null)
-                m_notifyIcon.Visible = show;
+            notifyIcon.ShowBalloonTip("Test", "testing 123", BalloonIcon.Info);
         }
     }
 }

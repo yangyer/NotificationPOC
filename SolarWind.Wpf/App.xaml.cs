@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hardcodet.Wpf.TaskbarNotification;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,19 @@ namespace SolarWind.Wpf
     /// </summary>
     public partial class App : Application
     {
+        private TaskbarIcon notifyIcon;
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            //initialize NotifyIcon
+            notifyIcon = (TaskbarIcon)FindResource("MyNotifyIcon");
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            notifyIcon.Dispose(); //the icon would clean up automatically, but this is cleaner
+            base.OnExit(e);
+        }
     }
 }
