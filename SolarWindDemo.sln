@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3662A4
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolarWind.Wpf", "SolarWind.Wpf\SolarWind.Wpf.csproj", "{53872E2E-D666-4954-9B86-0E3E0149FC01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{0DD53891-D4D6-4699-B559-594B490E55AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DD53891-D4D6-4699-B559-594B490E55AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DD53891-D4D6-4699-B559-594B490E55AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53872E2E-D666-4954-9B86-0E3E0149FC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53872E2E-D666-4954-9B86-0E3E0149FC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53872E2E-D666-4954-9B86-0E3E0149FC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53872E2E-D666-4954-9B86-0E3E0149FC01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
